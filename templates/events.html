@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Events</title>
+  <style>
+    body {
+      background-image: url("https://caedm.ca/wp-content/uploads/2022/06/Volunteer-hands-med.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: black;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px rgb(255, 255, 255);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid rgb(0, 0, 0);
+    }
+
+    th {
+      background-color: rgb(255, 0, 0);
+      color: black;
+      text-align: center;
+    }
+
+    td {
+      color: rgb(0, 0, 0);
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    tr:nth-child(odd) {
+      background-color: rgba(255,255,255,0.3);
+    }
+    .button {
+      width: 100%;
+      padding: 8px 16px;
+      margin: 4px 0;
+      box-sizing: border-box;
+      background-color: #ff0000;
+      color: white;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>אירועי התנדבות קרובים</h1>
+    <input type="button" onclick="window.location.href='/myevents'" class="button" value="ההתנדבויות שלי">
+    <table>
+      <thead>
+        <tr>
+          <th>פרטי האירוע</th>
+          <th>תאריך</th>
+          <th>שם האירוע</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for event in events %}
+        <tr>
+          <td>{{ event.name }}</td>
+          <td>{{ event.date }}</td>
+          <td>{{ event.details }}</td>
+          <td>
+            
+            <button class="button" onclick="register('{{ event.details }}', this)">הרשם</button>
+            
+            <span id="{{ event.details }}_msg"></span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function register(eventname, button) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/vRegister");
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          document.getElementById(eventname + "_msg").innerHTML = "נרשמת בהצלחה ל: " + xhr.responseText;
+          button.disabled = true;
+        }
+      };
+      xhr.send("name=" + eventname);
+    }
+  </script>
+</body>
+
+</html>

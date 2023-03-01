@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>התנדבויות שלי</title>
+    <style>
+      body {
+        background-image: url('https://caedm.ca/wp-content/uploads/2022/06/Volunteer-hands-med.jpg');
+        background-size: cover;
+        background-color: rgba(0, 0, 0, 0.8);
+        font-family: Arial, sans-serif;
+        color: black;
+        text-align: center;
+        padding-top: 50px;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px #333;
+      }
+
+      table {
+        margin: 0 auto;
+        width: 80%;
+        border-collapse: collapse;
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid black;
+      }
+
+      th {
+        background-color: black;
+        color: white;
+      }
+
+      form {
+        display: inline-block;
+        text-align: left;
+      }
+
+      input[type='submit'] {
+        width: 100%;
+        background-color: #ff0000;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type='submit']:hover {
+        background-color: #ff0000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>התנדבויות שלי</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>שם האירוע</th>
+          <th>תאריך</th>
+          <th>פרטים</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for event in events %}
+        <tr>
+          <td>{{ event.name }}</td>
+          <td>{{ event.date }}</td>
+          <td>{{ event.details }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <form action="/events">
+      <input type="submit" value="חזרה לדף הבית">
+    </form>
+  </body>
+</html>
