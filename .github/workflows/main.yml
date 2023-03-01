@@ -9,6 +9,7 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
+    container: ubuntu
     steps:
 
     # checkout
@@ -20,9 +21,9 @@ jobs:
 
     #E2E tests
     - name: E2E
-      # run: bash ./E2E.sh
-      run: |
-        sleep 5
-        docker ps -a
+      run: bash ./E2E.sh
+      # run: |
+      #   sleep 5
+      #   docker ps -a
         
 
