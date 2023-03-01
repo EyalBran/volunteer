@@ -15,5 +15,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: test 
-      run: ls  
+    - name: docker compose up
+      run: docker compose up -d 
+
+    #E2E tests
+    - name: E2E
+      run: bash ./E2E.sh
