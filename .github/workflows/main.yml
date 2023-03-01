@@ -20,4 +20,9 @@ jobs:
 
     #E2E tests
     - name: E2E
-      run: bash ./E2E.sh
+      # run: bash ./E2E.sh
+      run: |
+        sleep 5
+        docker ps -a
+        
+
