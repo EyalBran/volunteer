@@ -21,7 +21,6 @@ jobs:
     #E2E tests
     - name: E2E
       run: | 
-        chmod -R 755 $GITHUB_WORKSPACE/public
         bash ./E2E.sh
       # run: |
       #   sleep 5
