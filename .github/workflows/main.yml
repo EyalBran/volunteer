@@ -40,7 +40,7 @@ jobs:
       uses: docker/login-action@v2
       with:
         username: EyalBran
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        password: Eb9789123
 
     # publish to  dockerhub    
     - name: publish to Docker Hub
