@@ -49,7 +49,7 @@ jobs:
         docker tag project-myapp-1:latest eyalbran/volunteer:$TAG
         docker push eyalbran/volunteer:$TAG
        
-    # push tags
+    # push  tags
     - name: push tags
       if: github.ref == 'refs/heads/master'
       run: |
