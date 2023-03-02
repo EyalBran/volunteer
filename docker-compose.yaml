@@ -6,8 +6,8 @@ services:
     build: .
       # context: .
       # dockerfile: pythonImage 
-    networks:
-      - appNetwork
+    # networks:
+    #   - appNetwork
     ports: 
     - 5000:5000  
 
@@ -24,8 +24,8 @@ services:
     volumes:
     - data:/data/db 
     - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js
-    networks:
-    - appNetwork
+    # networks:
+    # - appNetwork
     healthcheck:
       test: ["CMD", "mongo", "--eval","db.runCommand({ping:1}).ok"]
       interval: 10s
@@ -40,11 +40,11 @@ services:
 
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf 
-    networks:
-      - appNetwork
+    # networks:
+    #   - appNetwork
       
-networks:
-  appNetwork:  
+# networks:
+#   appNetwork:  
 
 volumes:
   data:
