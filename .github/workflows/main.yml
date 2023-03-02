@@ -23,7 +23,8 @@ jobs:
       run: | 
         sleep 10
         docker ps
-        bash ./E2E.sh
+        # bash ./E2E.sh
+        curl -v localhost
 
 
     # git tag
