@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - feature/**
+      - main
 
 jobs:
   CI:
@@ -22,9 +23,9 @@ jobs:
     - name: E2E
       run: | 
         sleep 20
+        curl localhost
         docker ps
         bash ./E2E.sh
-        
 
 
     # git tag
