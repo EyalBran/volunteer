@@ -21,9 +21,39 @@ jobs:
     #E2E tests
     - name: E2E
       run: | 
-        bash ./E2E.sh
-      # run: |
-      #   sleep 5
-      #   docker ps -a
+        # bash ./E2E.sh
+
+
+    # git tag
+    - name: tagger
+      if: github.ref == 'refs/heads/master'
+      id: tagger
+      env:          
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      run: |
+        tag=$(bash ./app/tagger.sh)
+        export TAG=$tag
+        echo "::set-env name=TAG::$TAG"
+    # login to dockerhub    
+    - name: Login to Docker Hub
+      if: github.ref == 'refs/heads/master'
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    # publish to dockerhub    
+    - name: publish to Docker Hub
+      if: github.ref == 'refs/heads/master'
+      run: |
+        docker tag project-myapp-1:latest eyalbran/volunteer:$TAG
+        docker push eyalbran/volunteer:$TAG
+       
+    # push tags
+    - name: push tags
+      if: github.ref == 'refs/heads/master'
+      run: |
+        git push origin $TAG
+    
         
 
