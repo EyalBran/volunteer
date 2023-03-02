@@ -42,7 +42,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    # publish to dockerhub    
+    # publish  to dockerhub    
     - name: publish to Docker Hub
       if: github.ref == 'refs/heads/master'
       run: |
