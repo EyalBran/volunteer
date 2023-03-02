@@ -31,7 +31,7 @@ jobs:
       env:          
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       run: |
-        tag=$(bash ./app/tagger.sh)
+        tag=$(bash ./tagger.sh)
         export TAG=$tag
         echo "::set-env name=TAG::$TAG"
     # login to dockerhub    
