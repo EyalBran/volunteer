@@ -54,6 +54,7 @@ jobs:
     - name: push tags
       if: github.ref == 'refs/heads/master'
       run: |
+        git remote set-url origin https://${{ secrets.TOKEN }}@github.com/EyalBran/volunteer.git
         git push origin $TAG
     
         
