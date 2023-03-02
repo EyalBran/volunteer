@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 def connect_to_database():
     # Connect to the database
-    client = pymongo.MongoClient("mongodb://root:password@project-mongodb-1:27017/")
+    client = pymongo.MongoClient("mongodb", 27017, username="root", password="password", authSource="global", authMechanism='SCRAM-SHA-256')
     db = client["test"]
     return db["users"], db["events"]
     
@@ -111,4 +111,3 @@ def my_events():
 
 if __name__ == "__main__":
     app.run(debug=True,host = "0.0.0.0", port = 5000)
-
