@@ -18,10 +18,10 @@ jobs:
     - name: docker compose up
       run: docker compose up -d 
 
-    #E2E tests
+    # E2E tests
     - name: E2E
       run: | 
-        # bash ./E2E.sh
+        bash ./E2E.sh
 
 
     # git tag
